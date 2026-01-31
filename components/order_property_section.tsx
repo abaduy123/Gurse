@@ -12,8 +12,51 @@ import { Textarea } from "@/components/ui/textarea"
 import { useLanguage } from "@/lib/language-context"
 import { SearchableSelect } from "@/components/ui/SearchableSelect"
 import emailjs from "@emailjs/browser"
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input"
+import "react-phone-number-input/style.css"
+
+
 
 export function Order_Your_Property_Section() {
+
+  const currencyOptions = [
+    { value: "USD", label: "USD ($)" },
+    { value: "EUR", label: "EUR (€)" },
+    { value: "GBP", label: "GBP (£)" },
+    { value: "SAR", label: "SAR (﷼)" },
+    { value: "JPY", label: "JPY (¥)" },
+    { value: "CAD", label: "CAD ($)" },
+    { value: "AUD", label: "AUD ($)" },
+    { value: "CHF", label: "CHF (Fr)" },
+    { value: "CNY", label: "CNY (¥)" },
+    { value: "INR", label: "INR (₹)" },
+    { value: "AED", label: "AED (د.إ)" },
+    { value: "NZD", label: "NZD ($)" },
+    { value: "SEK", label: "SEK (kr)" },
+    { value: "NOK", label: "NOK (kr)" },
+    { value: "DKK", label: "DKK (kr)" },
+    { value: "SGD", label: "SGD ($)" },
+    { value: "HKD", label: "HKD ($)" },
+    { value: "KRW", label: "KRW (₩)" },
+    { value: "MYR", label: "MYR (RM)" },
+    { value: "THB", label: "THB (฿)" },
+    { value: "TRY", label: "TRY (₺)" },
+    { value: "RUB", label: "RUB (₽)" },
+    { value: "BRL", label: "BRL (R$)" },
+    { value: "MXN", label: "MXN ($)" },
+    { value: "ZAR", label: "ZAR (R)" },
+    { value: "PLN", label: "PLN (zł)" },
+    { value: "PHP", label: "PHP (₱)" },
+    { value: "IDR", label: "IDR (Rp)" },
+    { value: "EGP", label: "EGP (£)" },
+    { value: "ILS", label: "ILS (₪)" },
+    { value: "BDT", label: "BDT (৳)" },
+    { value: "PKR", label: "PKR (₨)" },
+    { value: "VND", label: "VND (₫)" },
+    { value: "CLP", label: "CLP ($)" },
+    { value: "COP", label: "COP ($)" },
+    { value: "NGN", label: "NGN (₦)" },
+  ]
   const { language, isRTL, t } = useLanguage()
   const sectionRef = useRef<HTMLElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -25,6 +68,9 @@ export function Order_Your_Property_Section() {
   const [cityId, setCityId] = useState<number>()
   const [propertyType, setPropertyType] = useState<string>()
   const [emailError, setEmailError] = useState("")
+  const [phoneValue, setPhoneValue] = useState<string>()
+  const [phoneError, setPhoneError] = useState("")
+  const [currency, setCurrency] = useState<string>("USD") // default USD
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,6 +81,14 @@ export function Order_Your_Property_Section() {
     return () => observer.disconnect()
   }, [])
 
+  const validatePhone = (value?: string) => {
+    if (!value || !isValidPhoneNumber(value)) {
+      setPhoneError(isRTL ? "رقم الهاتف غير صحيح" : "Invalid phone number")
+      return false
+    }
+    setPhoneError("")
+    return true
+  }
   /* ---------------- Options ---------------- */
   const regionOptions = regions.map((r: any) => ({
     value: r.region_id,
@@ -69,7 +123,7 @@ export function Order_Your_Property_Section() {
     e.preventDefault()
     if (!formRef.current) return
 
-    if (emailError) return
+    if (emailError || !validatePhone(phoneValue)) return
 
     setIsSubmitting(true)
     setSubmitStatus({ type: null, message: "" })
@@ -158,14 +212,27 @@ export function Order_Your_Property_Section() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <Label>{t.order_your_property.phone}</Label>
-                  <Input
-                    name="phone"
-                    required
-                    type="tel"
-                    dir="ltr"
-                    className="mt-2 h-12 bg-secondary"
-                    placeholder="+966 5X XXX XXXX"
-                  />
+                  <div className="mt-2 flex h-12 w-full rounded-md border border-input bg-secondary px-3 py-2 focus-within:ring-2 focus-within:ring-accent">
+                    <PhoneInput
+                      international
+                      defaultCountry="SA"
+                      value={phoneValue}
+                      onChange={(v) => {
+                        setPhoneValue(v)
+                        if (phoneError) validatePhone(v)
+                      }}
+
+                      onBlur={() => validatePhone(phoneValue)}
+                      placeholder="+966 5X XXX XXXX"
+                      className="flex w-full gap-2"
+                    />
+                  </div>
+
+                  <input type="hidden" name="phone" value={phoneValue || ""} />
+
+                  {phoneError && (
+                    <p className="text-sm text-red-500 mt-1">{phoneError}</p>
+                  )}
                 </div>
 
                 <div>
@@ -233,12 +300,14 @@ export function Order_Your_Property_Section() {
               <div className="grid md:grid-cols-2 gap-6">
                 <Input
                   name="numberOfRooms"
+                  className="h-12"
                   required
                   inputMode="numeric"
                   placeholder={isRTL ? "عدد الغرف" : language === "so" ? "Tirada qolalka" : "Number of rooms"}
                 />
                 <Input
                   name="numberOfBathrooms"
+                  className="h-12"
                   required
                   inputMode="numeric"
                   placeholder={isRTL ? "عدد دورات المياه" : language === "so" ? "Tirada musqulaha" : "Number of bathrooms"}
@@ -247,19 +316,40 @@ export function Order_Your_Property_Section() {
                 <div className="relative">
                   <Input
                     name="space"
+                    className="h-12"
                     required
                     inputMode="decimal"
                     placeholder={isRTL ? "المساحة" : language === "so" ? "Aagga" : "Space"}
                   />
-                  <span className={`absolute top-3 text-muted-foreground ${isRTL ? "left-3" : "right-3"}`}>㎡</span>
+                  <span className={`absolute top-3 text-muted-foreground  ${isRTL ? "left-3" : "right-3"}`}>㎡</span>
                 </div>
 
-                <Input
-                  name="expectedPrice"
-                  required
-                  inputMode="decimal"
-                  placeholder={isRTL ? "السعر المتوقع" : language === "so" ? "Qiimaha la filayo" : "Expected price"}
-                />
+                <div className="flex gap-2 items-center">
+                  <div className="flex-1">
+                    <Input
+                      name="expectedPrice"
+                      className="h-12"
+                      required
+                      inputMode="decimal"
+                      placeholder={isRTL ? "السعر المتوقع" : language === "so" ? "Qiimaha la filayo" : "Expected price"}
+                    />
+                  </div>
+
+                  <div className="w-32">
+                    <SearchableSelect
+                      options={currencyOptions}
+                      value={currency}
+                      onChange={setCurrency}
+                      placeholder={isRTL ? "اختر العملة" : "Select currency"}
+                    />
+                    <input
+                      type="hidden"
+                      name="currency"
+                      value={currencyOptions.find(o => o.value === currency)?.label ?? ""}
+                    />
+
+                  </div>
+                </div>
               </div>
 
               {/* Notes */}

@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label"
 import { useLanguage } from "@/lib/language-context"
 import Image from "next/image"
 import emailjs from "@emailjs/browser"
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input"
+import "react-phone-number-input/style.css"
 
 export default function ContactSection() {
   const { t, isRTL } = useLanguage()
@@ -17,6 +19,8 @@ export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [phoneValue, setPhoneValue] = useState<string>()
+    const [phoneError, setPhoneError] = useState("")
   const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error" | null; message: string }>({ type: null, message: "" })
 
   useEffect(() => {
@@ -31,9 +35,20 @@ export default function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
+  const validatePhone = (value?: string) => {
+      if (!value || !isValidPhoneNumber(value)) {
+        setPhoneError(isRTL ? "رقم الهاتف غير صحيح" : "Invalid phone number")
+        return false
+      }
+      setPhoneError("")
+      return true
+    }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!formRef.current) return
+    if (!validatePhone(phoneValue)) return
+    
 
     setIsSubmitting(true)
     setSubmitStatus({ type: null, message: "" })
@@ -167,7 +182,27 @@ export default function ContactSection() {
 
               <div>
                 <Label htmlFor="phone" className="text-sm font-semibold text-foreground">{t.contact.phone}</Label>
-                <Input id="phone" name="phone" type="tel" placeholder="+966 5X XXX XXXX" className="mt-2 bg-secondary border-border h-12" dir="ltr" />
+                <div className="mt-2 flex h-12 w-full rounded-md border border-input bg-secondary px-3 py-2 focus-within:ring-2 focus-within:ring-accent">
+                                    <PhoneInput
+                                      international
+                                      defaultCountry="SA"
+                                      value={phoneValue}
+                                      onChange={(v) => {
+                                        setPhoneValue(v)
+                                        if (phoneError) validatePhone(v)
+                                      }}
+                                    
+                                      onBlur={() => validatePhone(phoneValue)}
+                                      placeholder="+966 5X XXX XXXX"
+                                      className="flex w-full gap-2"
+                                    />
+                                  </div>
+                
+                                  <input type="hidden" name="phone" value={phoneValue || ""} />
+                
+                                  {phoneError && (
+                                    <p className="text-sm text-red-500 mt-1">{phoneError}</p>
+                                  )}
               </div>
 
               <div>
