@@ -42,7 +42,14 @@ export function SearchableSelect<T extends string | number>({
   required,
 }: SearchableSelectProps<T>) {
   const [open, setOpen] = React.useState(false)
+  const [search, setSearch] = React.useState("")
 
+  const filteredOptions = React.useMemo(() => {
+  if (!search) return options.slice(0, 5) // only first 5 when no search
+  return options.filter((o) =>
+    o.label.toLowerCase().includes(search.toLowerCase())
+  )
+}, [search, options])
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -62,15 +69,17 @@ export function SearchableSelect<T extends string | number>({
         side="bottom"        // force it to appear below
         sideOffset={4}>
         <Command>
-          <CommandInput placeholder="Search..." />
+          <CommandInput placeholder="Search..."  value={search}
+  onValueChange={setSearch}/>
           <CommandEmpty>No results found</CommandEmpty>
           <CommandGroup>
-            {options.map((option) => (
+            {filteredOptions.map((option) => (
               <CommandItem
                 key={option.value.toString()}
                 onSelect={() => {
                   onChange(option.value)
                   setOpen(false)
+                  setSearch("") // reset search after select
                 }}
               >
                 <Check
@@ -86,7 +95,7 @@ export function SearchableSelect<T extends string | number>({
         </Command>
 
         {name && value !== undefined && (
-          <input type="hidden" name={name} value={value} required={required} />
+          <input type="hidden" name={name} value={value} />
         )}
       </PopoverContent>
     </Popover>
