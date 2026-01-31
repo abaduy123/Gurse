@@ -209,23 +209,22 @@ export function Order_Your_Property_Section() {
               </div>
 
               {/* Contact */}
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="">
                 <div>
                   <Label>{t.order_your_property.phone}</Label>
-                  <div className="mt-2 flex h-12 w-full rounded-md border border-input bg-secondary px-3 py-2 focus-within:ring-2 focus-within:ring-accent">
+                  <div className="mt-2 w-full max-w-full mb-4 ">
                     <PhoneInput
-                      international
-                      defaultCountry="SA"
-                      value={phoneValue}
-                      onChange={(v) => {
-                        setPhoneValue(v)
-                        if (phoneError) validatePhone(v)
-                      }}
-
-                      onBlur={() => validatePhone(phoneValue)}
-                      placeholder="+966 5X XXX XXXX"
-                      className="flex w-full gap-2"
-                    />
+    international
+    defaultCountry="SA"
+    value={phoneValue}
+    onChange={(v) => {
+      setPhoneValue(v)
+      if (phoneError) validatePhone(v)
+    }}
+    onBlur={() => validatePhone(phoneValue)}
+    placeholder="+966 5X XXX XXXX"
+    className="w-full h-12 rounded-md border border-input px-3 bg-secondary"
+  />
                   </div>
 
                   <input type="hidden" name="phone" value={phoneValue || ""} />
@@ -235,7 +234,7 @@ export function Order_Your_Property_Section() {
                   )}
                 </div>
 
-                <div>
+                <div className="mt-4">
                   <Label>{t.order_your_property.emailLabel}</Label>
                   <Input
                     name="email"
