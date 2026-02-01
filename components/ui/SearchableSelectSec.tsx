@@ -22,7 +22,7 @@ interface Option<T> {
   label: string
 }
 
-interface SearchableSelectProps<T> {
+interface SearchableSelectSecProps<T> {
   value?: T
   onChange: (value: T) => void
   options: Option<T>[]
@@ -32,7 +32,7 @@ interface SearchableSelectProps<T> {
   required?: boolean
 }
 
-export function SearchableSelect<T extends string | number>({
+export function SearchableSelectSec<T extends string | number>({
   value,
   onChange,
   options,
@@ -40,12 +40,12 @@ export function SearchableSelect<T extends string | number>({
   disabled,
   name,
   required,
-}: SearchableSelectProps<T>) {
+}: SearchableSelectSecProps<T>) {
   const [open, setOpen] = React.useState(false)
   const [search, setSearch] = React.useState("")
 
   const filteredOptions = React.useMemo(() => {
-  if (!search) return options.slice(0, 9) // only first 5 when no search
+  if (!search) return options.slice(0, 6) // only first 5 when no search
   return options.filter((o) =>
     o.label.toLowerCase().includes(search.toLowerCase())
   )

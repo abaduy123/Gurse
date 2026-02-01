@@ -1,5 +1,22 @@
 [
     {
+        "city_id" : 6,
+        "region_id" : 11,
+        "name" : {
+            "ar" : "مكة المكرمة",
+            "en" : "Makkah Al Mukarramah"
+        }
+    },
+
+    {
+        "city_id" : 14,
+        "region_id" : 7,
+        "name" : {
+            "ar" : "المدينة المنورة",
+            "en" : "Al Madinah Al Munawwarah"
+        }
+    },
+    {
         "district_id" : 28,
         "city_id" : 15,
         "name" : {

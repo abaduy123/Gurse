@@ -1,5 +1,130 @@
 [
     {
+        "city_id" : 1542,
+        "region_id" : 9,
+        "name" : {
+            "ar" : "الباحة",
+            "en" : "Al Baha"
+        }
+    },
+    {
+        "city_id" : 1531,
+        "region_id" : 9,
+        "name" : {
+            "ar" : "بلجرشي",
+            "en" : "Biljurashi"
+        }
+    },
+    {
+        "city_id" : 3417,
+        "region_id" : 12,
+        "name" : {
+            "ar" : "نجران",
+            "en" : "Najran"
+        }
+    },
+    {
+        "city_id" : 3347,
+        "region_id" : 12,
+        "name" : {
+            "ar" : "شرورة",
+            "en" : "Sharurah"
+        }
+    },
+     {
+        "city_id" : 3396,
+        "region_id" : 12,
+        "name" : {
+            "ar" : "حبونا",
+            "en" : "Hubuna"
+        }
+    },
+    
+    {
+        "city_id" : 483,
+        "region_id" : 7,
+        "name" : {
+            "ar" : "ينبع",
+            "en" : "Yanbu"
+        }
+    },
+    {
+        "city_id" : 199,
+        "region_id" : 7,
+        "name" : {
+            "ar" : "العلا",
+            "en" : "Al Ula"
+        }
+    },
+    {
+        "city_id" : 777,
+        "region_id" : 7,
+        "name" : {
+            "ar" : "الحناكية",
+            "en" : "Al Hinakiyah"
+        }
+    },
+
+
+
+    {
+        "city_id" : 1053,
+        "region_id" : 7,
+        "name" : {
+            "ar" : "بدر",
+            "en" : "Badr"
+        }
+    },
+    {
+        "city_id" : 360,
+        "region_id" : 7,
+        "name" : {
+            "ar" : "مهد الذهب",
+            "en" : "Mahd Adh Dhahab"
+        }
+    },
+    {
+        "city_id" : 3,
+        "region_id" : 6,
+        "name" : {
+            "ar" : "الرياض",
+            "en" : "Riyadh"
+        }
+    },
+    {
+        "city_id" : 1061,
+        "region_id" : 6,
+        "name" : {
+            "ar" : "الخرج",
+            "en" : "Al Kharj"
+        }
+    },
+     {
+        "city_id" : 24,
+        "region_id" : 6,
+        "name" : {
+            "ar" : "المجمعة",
+            "en" : "Al Majmaah"
+        }
+    },
+    {
+        "city_id" : 664,
+        "region_id" : 6,
+        "name" : {
+            "ar" : "الدرعية",
+            "en" : "Ad Diriyah"
+        }
+    },
+    {
+        "city_id" : 669,
+        "region_id" : 6,
+        "name" : {
+            "ar" : "الدوادمي",
+            "en" : "Ad Duwadimi"
+        }
+    },
+    
+    {
         "city_id" : 1,
         "region_id" : 3,
         "name" : {
@@ -15,14 +140,7 @@
             "en" : "Nami"
         }
     },
-    {
-        "city_id" : 3,
-        "region_id" : 6,
-        "name" : {
-            "ar" : "الرياض",
-            "en" : "Riyadh"
-        }
-    },
+    
     {
         "city_id" : 4,
         "region_id" : 3,
@@ -39,14 +157,7 @@
             "en" : "At Taif"
         }
     },
-    {
-        "city_id" : 6,
-        "region_id" : 11,
-        "name" : {
-            "ar" : "مكة المكرمة",
-            "en" : "Makkah Al Mukarramah"
-        }
-    },
+    
     {
         "city_id" : 7,
         "region_id" : 3,
@@ -104,13 +215,14 @@
         }
     },
     {
-        "city_id" : 14,
-        "region_id" : 7,
+        "city_id" : 3677,
+        "region_id" : 13,
         "name" : {
-            "ar" : "المدينة المنورة",
-            "en" : "Al Madinah Al Munawwarah"
+            "ar" : "الاحساء",
+            "en" : "Al Ahsa"
         }
     },
+   
     {
         "city_id" : 15,
         "region_id" : 8,
@@ -136,11 +248,35 @@
         }
     },
     {
+        "city_id" : 3525,
+        "region_id" : 10,
+        "name" : {
+            "ar" : "ابو عريش",
+            "en" : "Abu Arish"
+        }
+    },
+    {
+        "city_id" : 3479,
+        "region_id" : 10,
+        "name" : {
+            "ar" : "صبيا",
+            "en" : "Sabya"
+        }
+    },
+    {
         "city_id" : 18,
         "region_id" : 11,
         "name" : {
             "ar" : "جدة",
             "en" : "Jeddah"
+        }
+    },
+    {
+        "city_id" : 377,
+        "region_id" : 11,
+        "name" : {
+            "ar" : "رابغ",
+            "en" : "Rabigh"
         }
     },
     {
@@ -183,20 +319,21 @@
             "en" : "Dhat Al Hajj"
         }
     },
-    {
-        "city_id" : 24,
-        "region_id" : 6,
-        "name" : {
-            "ar" : "المجمعة",
-            "en" : "Al Majmaah"
-        }
-    },
+    
     {
         "city_id" : 25,
         "region_id" : 3,
         "name" : {
             "ar" : "قيال",
             "en" : "Qiyal"
+        }
+    },
+    {
+        "city_id" : 1625,
+        "region_id" : 11,
+        "name" : {
+            "ar" : "القنفذة",
+            "en" : "Al Qunfidhah"
         }
     },
     {
@@ -213,6 +350,14 @@
         "name" : {
             "ar" : "البديعة",
             "en" : "Al Badiah"
+        }
+    },
+    {
+        "city_id" : 1390,
+        "region_id" : 11,
+        "name" : {
+            "ar" : "الليث",
+            "en" : "Al Lith"
         }
     },
     {
@@ -253,6 +398,22 @@
         "name" : {
             "ar" : "ابار قنا",
             "en" : "Abar Qana"
+        }
+    },
+    {
+        "city_id" : 113,
+        "region_id" : 13,
+        "name" : {
+            "ar" : "الجبيل",
+            "en" : "Al Jubail"
+        }
+    },
+    {
+        "city_id" : 67,
+        "region_id" : 13,
+        "name" : {
+            "ar" : "القطيف",
+            "en" : "Al Qatif"
         }
     },
     {
@@ -495,6 +656,22 @@
             "en" : "Khamis Mushayt"
         }
     },
+     {
+        "city_id" : 2519,
+        "region_id" : 8,
+        "name" : {
+            "ar" : "النماص",
+            "en" : "An Namas / Tanumah"
+        }
+    },
+    {
+        "city_id" : 1301,
+        "region_id" : 8,
+        "name" : {
+            "ar" : "بيشة",
+            "en" : "Bishah"
+        }
+    },
     {
         "city_id" : 63,
         "region_id" : 13,
@@ -637,6 +814,14 @@
         "name" : {
             "ar" : "عنيزة",
             "en" : "Unayzah"
+        }
+    },
+    {
+        "city_id" : 2421,
+        "region_id" : 5,
+        "name" : {
+            "ar" : "الرس",
+            "en" : "Ar Rass"
         }
     },
     {
@@ -2983,14 +3168,7 @@
             "en" : "Al Uqlah"
         }
     },
-    {
-        "city_id" : 377,
-        "region_id" : 11,
-        "name" : {
-            "ar" : "رابغ",
-            "en" : "Rabigh"
-        }
-    },
+    
     {
         "city_id" : 378,
         "region_id" : 11,
@@ -10359,14 +10537,7 @@
             "en" : "Al Ammarah"
         }
     },
-    {
-        "city_id" : 1301,
-        "region_id" : 8,
-        "name" : {
-            "ar" : "بيشة",
-            "en" : "Bishah"
-        }
-    },
+    
     {
         "city_id" : 1302,
         "region_id" : 8,
@@ -11071,14 +11242,7 @@
             "en" : "Al Kurdum"
         }
     },
-    {
-        "city_id" : 1390,
-        "region_id" : 11,
-        "name" : {
-            "ar" : "الليث",
-            "en" : "Al Lith"
-        }
-    },
+    
     {
         "city_id" : 1391,
         "region_id" : 11,
@@ -12951,14 +13115,7 @@
             "en" : "Al Anafah"
         }
     },
-    {
-        "city_id" : 1625,
-        "region_id" : 11,
-        "name" : {
-            "ar" : "القنفذة",
-            "en" : "Al Qunfidhah"
-        }
-    },
+    
     {
         "city_id" : 1626,
         "region_id" : 8,
@@ -19311,14 +19468,7 @@
             "en" : "Dukhnah"
         }
     },
-    {
-        "city_id" : 2421,
-        "region_id" : 5,
-        "name" : {
-            "ar" : "الرس",
-            "en" : "Ar Rass"
-        }
-    },
+    
     {
         "city_id" : 2422,
         "region_id" : 5,
@@ -27775,14 +27925,7 @@
             "en" : "Ad Dahna"
         }
     },
-    {
-        "city_id" : 3479,
-        "region_id" : 10,
-        "name" : {
-            "ar" : "صبيا",
-            "en" : "Sabya"
-        }
-    },
+    
     {
         "city_id" : 3480,
         "region_id" : 10,
@@ -28143,14 +28286,7 @@
             "en" : "As Salamah"
         }
     },
-    {
-        "city_id" : 3525,
-        "region_id" : 10,
-        "name" : {
-            "ar" : "ابو عريش",
-            "en" : "Abu Arish"
-        }
-    },
+    
     {
         "city_id" : 3526,
         "region_id" : 10,
