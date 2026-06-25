@@ -74,14 +74,14 @@ export default function ContactSection() {
     {
       icon: Phone,
       label: t.contact.phone,
-      value: "966536458798",
-      href: "tel:+966536458798",
+      value: "966595213436",
+      href: "tel:+966595213436",
     },
     {
       icon: MessageCircle,
       label: t.contact.whatsapp,
-      value: "966536458798",
-      href: "https://wa.me/966536458798",
+      value: "966595213436",
+      href: "https://wa.me/+966595213436",
     },
     {
       icon: Mail,

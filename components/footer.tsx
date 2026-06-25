@@ -41,13 +41,13 @@ export function Footer() {
             </p>
             <div className={`flex items-center gap-4 ${isRTL ? "flex-row-reverse" : ""}`}>
               <a
-                href="https://wa.me/966536458798"
+                href="https://wa.me/+966595213436"
                 className="w-10 h-10 rounded-lg bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300"
               >
                 <MessageCircle className="h-5 w-5 text-primary-foreground" />
               </a>
               <a
-                href="tel:+966536458798"
+                href="tel:++966595213436"
                 className="w-10 h-10 rounded-lg bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300"
               >
                 <Phone className="h-5 w-5 text-primary-foreground" />
@@ -83,7 +83,7 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                 <span className="text-primary-foreground/70" dir={isRTL ? "ltr" : "ltr"}>
-                  +966 536458798
+                  +966 595213436
                 </span>
               </li>
 
@@ -91,7 +91,7 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MessageCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                 <span className="text-primary-foreground/70" dir={isRTL ? "ltr" : "ltr"}>
-                  +966 536458798
+                  +966 595213436
                 </span>
               </li>
               <li className={`flex items-start gap-3`}>

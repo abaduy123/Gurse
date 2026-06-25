@@ -12,6 +12,7 @@ interface Translations {
     vision: string
     contact: string
     order_your_property: string
+    latest_news:string
   }
 
   hero: {
@@ -125,6 +126,7 @@ const translations: Record<Language, Translations> = {
       vision: "Himiladeenna",
       contact: "Nala Xiriir",
       order_your_property: "Dalbo Hanti",
+      latest_news:"Wararka Ugu Dambeeyay"
     },
 
     hero: {
@@ -246,6 +248,7 @@ Abdo Mohammed
       vision: "Vision",
       contact: "Contact",
       order_your_property: "Order Property",
+      latest_news: "Latest News",
     },
 
     hero: {
@@ -368,6 +371,7 @@ Abdo Mohammed
       vision: "رؤيتنا",
       contact: "اتصل بنا",
       order_your_property: "طلب عقار",
+      latest_news: "آخر الأخبار",
     },
 
     hero: {

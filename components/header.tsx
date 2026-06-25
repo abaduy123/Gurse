@@ -4,6 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import { Menu, X, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link" // <-- Import Next.js Link
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,6 +29,7 @@ export function Header() {
     { href: "#vision", label: t.nav.vision },
     { href: "/contact-section", label: t.nav.contact },
     { href: "#order-property", label: t.nav.order_your_property },
+    { href: "/#latest-news", label: t.nav.latest_news },
   ]
 
   return (
@@ -61,6 +63,17 @@ export function Header() {
 
           {/* Language Switcher & Mobile Menu */}
           <div className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
+             <Button
+    asChild
+    variant="outline"
+    size="sm"
+    className="hidden md:inline-flex"
+  >
+    <Link href="/admin/login">
+      Admin
+    </Link>
+  </Button>
+
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -111,6 +124,17 @@ export function Header() {
                   {item.label}
                 </a>
               ))}
+              <Link
+  href="/admin/login"
+  onClick={() => setMobileMenuOpen(false)}
+>
+  <Button
+    variant="outline"
+    className="w-full mt-4"
+  >
+    Admin
+  </Button>
+</Link>
             </div>
           </nav>
         )}

@@ -5,6 +5,7 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { VisionSection } from "@/components/vision-section"
+import { NewsSection } from "@/components/news-section"
 
 import {Order_Your_Property_Section} from "@/components/order_property_section"
 import { Footer } from "@/components/footer"
@@ -17,6 +18,7 @@ export default function Home() {
         <main>
           <Header />
           <HeroSection />
+          <NewsSection /> 
           <AboutSection />
           <VisionSection />
           <Order_Your_Property_Section/>

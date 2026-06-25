@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Send } from "lucide-react"
 import regions from "@/lib/regions.json"
-import cities from "@/lib/cities.json"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
@@ -72,6 +72,7 @@ export function Order_Your_Property_Section() {
   const [phoneValue, setPhoneValue] = useState<string>()
   const [phoneError, setPhoneError] = useState("")
   const [currency, setCurrency] = useState<string>("USD") // default USD
+  const [cities, setCities] = useState<any[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -81,6 +82,20 @@ export function Order_Your_Property_Section() {
     sectionRef.current && observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
+  useEffect(() => {
+  const loadCities = async () => {
+    try {
+      const res = await fetch("/cities.json")
+      if (!res.ok) throw new Error("Failed to load cities")
+      const data = await res.json()
+      setCities(data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  loadCities()
+}, [])
 
   const validatePhone = (value?: string) => {
     if (!value || !isValidPhoneNumber(value)) {

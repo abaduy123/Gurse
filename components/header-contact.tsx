@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link" // <-- Import Next.js Link
 import { Menu, X, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useLanguage, type Language } from "@/lib/language-context"
+import { hr } from "date-fns/locale"
 
 const languages: { code: Language; label: string; flag: string }[] = [
   { code: "so", label: "Soomaali", flag: "SO" },
@@ -22,12 +24,15 @@ export function Header_Contact() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { language, setLanguage, t, isRTL } = useLanguage()
 
+  // 👇 Prepend "/" to all your section IDs so they always route to the home page first
   const navItems = [
     { href: "/", label: t.nav.home },
-    { href: "/", label: t.nav.about },
-    { href: "/", label: t.nav.vision },
-    { href: "#contact", label: t.nav.contact },
-    {  href: "/", label: t.nav.order_your_property },
+    { href: "/#about", label: t.nav.about },
+    { href: "/#vision", label: t.nav.vision },
+    { href: "/#contact", label: t.nav.contact }, // Update this to match your actual contact ID or route
+    { href: "/#order-property", label: t.nav.order_your_property },
+    {href: "/#latest-news", label: t.nav.latest_news}, // Add this line for the news page
+
   ]
 
   return (
@@ -35,7 +40,7 @@ export function Header_Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logo.png"
               alt="Gurase Properties"
@@ -44,23 +49,34 @@ export function Header_Contact() {
               className="h-12 md:h-14 lg:h-16 w-auto"
               priority
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className={`hidden md:flex items-center gap-8 ${isRTL ? "flex-row-reverse" : ""}`}>
             {navItems.map((item) => (
-              <a
+              <Link // <-- Change <a> to <Link>
                 key={`${item.href}-${item.label}`}
                 href={item.href}
                 className="text-sm font-medium text-foreground/80 hover:text-accent transition-colors duration-200 tracking-wide"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           {/* Language Switcher & Mobile Menu */}
           <div className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
+             <Button
+    asChild
+    variant="outline"
+    size="sm"
+    className="hidden md:inline-flex"
+  >
+    <Link href="/admin/login">
+      Admin
+    </Link>
+  </Button>
+
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -102,15 +118,26 @@ export function Header_Contact() {
           <nav className="md:hidden py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
-                <a
+                <Link // <-- Change <a> to <Link>
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-3 text-sm font-medium text-foreground/80 hover:text-accent hover:bg-muted rounded-lg transition-colors duration-200"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
+              <Link
+  href="/admin/login"
+  onClick={() => setMobileMenuOpen(false)}
+>
+  <Button
+    variant="outline"
+    className="w-full mt-4"
+  >
+    Admin
+  </Button>
+</Link>
             </div>
           </nav>
         )}
