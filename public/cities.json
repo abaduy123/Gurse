@@ -8,6 +8,22 @@
         }
     },
     {
+    "city_id": 50001,
+    "region_id": 11,
+    "name": {
+        "ar": "مكة المكرمة",
+        "en": "Makkah"
+    }
+},
+{
+    "city_id": 50002,
+    "region_id": 7,
+    "name": {
+        "ar": "المدينة المنورة",
+        "en": "Madinah"
+    }
+},
+    {
         "city_id" : 1531,
         "region_id" : 9,
         "name" : {
@@ -64,6 +80,7 @@
             "en" : "Al Hinakiyah"
         }
     },
+
 
 
 
