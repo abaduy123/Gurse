@@ -30,29 +30,36 @@ export function NewsSection() {
   if (newsList.length === 0) return null // Hide section if no news
 
   return (
-    <section id='latest-news' className="py-40 bg-background " dir={isRTL ? "rtl" : "ltr"}>
+    // 1. Made padding responsive (py-16 on mobile, py-40 on large screens)
+    // 2. Added overflow-hidden to prevent horizontal scrolling
+    <section id='latest-news' className="py-16 lg:py-40 bg-background overflow-hidden" dir={isRTL ? "rtl" : "ltr"}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6 tracking-tight gold-accent-line inline-block">
+          {/* Added max-w-full and break-words to ensure long translated headers don't overflow */}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6 tracking-tight gold-accent-line inline-block max-w-full break-words">
             {isRTL ? "آخر الأخبار" : language === 'so' ? "Wararkii Ugu Dambeeyay" : "Latest News"}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsList.map((news) => (
-            // 2. Wrap the card in a Link
             <Link key={news.id} href={`/news/${news.id}`}>
-              <div className="bg-card rounded-xl border border-border shadow-lg overflow-hidden flex flex-col cursor-pointer hover:shadow-2xl transition-all h-full">
+              {/* Added min-w-0 to fix a flexbox bug where children can't shrink below their content size */}
+              <div className="bg-card rounded-xl border border-border shadow-lg overflow-hidden flex flex-col cursor-pointer hover:shadow-2xl transition-all h-full min-w-0">
                 <div className="p-6 flex-grow">
                   <p className="text-xs text-accent font-semibold mb-3">
                     {new Date(news.created_at).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
                   </p>
-                  <h3 className="text-xl font-bold text-foreground mb-4">
+                  
+                  {/* Added break-words to force long, unbroken titles to wrap to the next line */}
+                  <h3 className="text-xl font-bold text-foreground mb-4 break-words">
                     {getLocalizedField(news, 'title')}
                   </h3>
+                  
+                  {/* Added break-words here as well to protect against injected HTML overflow */}
                   <div 
-                    className="text-muted-foreground prose prose-sm dark:prose-invert max-w-none line-clamp-3"
+                    className="text-muted-foreground prose prose-sm dark:prose-invert max-w-none line-clamp-3 break-words"
                     dangerouslySetInnerHTML={{ __html: getLocalizedField(news, 'text') }}
                   />
                 </div>
