@@ -31,20 +31,21 @@ function NewsContent() {
   if (!news) return <div className="min-h-screen flex items-center justify-center">News not found.</div>
 
   // Select the correct language content
-  const title = news[`title_${language}`] || news.title_en || news.title_ar || news.title_so
-  const text = news[`text_${language}`] || news.text_en || news.text_ar || news.text_so
+  const title = news[`title_${language}`] || news.title_en || news.title_ar || news.title_so || ''
+  const rawText = news[`text_${language}`] || news.text_en || news.text_ar || news.text_so || ''
+  
+  // CRITICAL FIX: Replace all non-breaking spaces with standard spaces.
+  // This allows the browser to wrap paragraphs naturally at word boundaries.
+  const cleanText = rawText.replace(/&nbsp;/g, ' ')
 
   return (
-    // 1. Added w-full and overflow-x-hidden to fully lock the screen's canvas width on mobile
     <div className="min-h-screen bg-background pt-32 pb-20 px-4 w-full overflow-x-hidden" dir={isRTL ? "rtl" : "ltr"}>
-      {/* 2. Ensured layout container enforces strict bounds */}
       <div className="max-w-3xl mx-auto w-full min-w-0">
         <Button variant="ghost" onClick={() => router.back()} className="mb-8 gap-2">
           {isRTL ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
           {isRTL ? "عودة" : "Back"}
         </Button>
 
-        {/* 3. Added break-words to handle extremely long single-word titles or long translations */}
         <h1 className="text-3xl md:text-4xl font-bold text-primary mb-6 break-words tracking-tight">
           {title}
         </h1>
@@ -53,10 +54,13 @@ function NewsContent() {
           {new Date(news.created_at).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
         </p>
 
-       
+        {/* 
+          Removed the overly aggressive [&_*]:!break-words because the text is now clean.
+          Kept standard break-words on the container just for genuine long URLs.
+        */}
         <div 
-          className="prose dark:prose-invert max-w-none w-full overflow-hidden break-words [&_ol]:list-decimal [&_ul]:list-disc [&_ol]:list-inside [&_ul]:list-inside [&_ol]:ms-4 [&_ul]:ms-4 [&_*]:!max-w-full [&_*]:!h-auto [&_*]:!break-words"
-          dangerouslySetInnerHTML={{ __html: text }}
+          className="prose dark:prose-invert max-w-none w-full overflow-hidden break-words [&_ol]:list-decimal [&_ul]:list-disc [&_ol]:list-inside [&_ul]:list-inside [&_ol]:ms-4 [&_ul]:ms-4 [&_*]:!max-w-full [&_*]:!h-auto"
+          dangerouslySetInnerHTML={{ __html: cleanText }}
         />
       </div>
     </div>
