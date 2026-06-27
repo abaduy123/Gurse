@@ -35,23 +35,29 @@ function NewsContent() {
   const text = news[`text_${language}`] || news.text_en || news.text_ar || news.text_so
 
   return (
-    <div className="min-h-screen bg-background pt-32 pb-20 px-4" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="max-w-3xl mx-auto">
+    // 1. Added w-full and overflow-x-hidden to fully lock the screen's canvas width on mobile
+    <div className="min-h-screen bg-background pt-32 pb-20 px-4 w-full overflow-x-hidden" dir={isRTL ? "rtl" : "ltr"}>
+      {/* 2. Ensured layout container enforces strict bounds */}
+      <div className="max-w-3xl mx-auto w-full min-w-0">
         <Button variant="ghost" onClick={() => router.back()} className="mb-8 gap-2">
           {isRTL ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
           {isRTL ? "عودة" : "Back"}
         </Button>
 
-        <h1 className="text-4xl font-bold text-primary mb-6">{title}</h1>
+        {/* 3. Added break-words to handle extremely long single-word titles or long translations */}
+        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-6 break-words tracking-tight">
+          {title}
+        </h1>
+        
         <p className="text-muted-foreground mb-8">
           {new Date(news.created_at).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
         </p>
 
-        {/* This div uses the 'prose' class to automatically style your HTML tags */}
+       
         <div 
-  className="prose dark:prose-invert max-w-none [&_ol]:list-decimal [&_ul]:list-disc [&_ol]:list-inside [&_ul]:list-inside [&_ol]:ms-4 [&_ul]:ms-4"
-  dangerouslySetInnerHTML={{ __html: text }}
-/>
+          className="prose dark:prose-invert max-w-none w-full overflow-hidden break-words [&_ol]:list-decimal [&_ul]:list-disc [&_ol]:list-inside [&_ul]:list-inside [&_ol]:ms-4 [&_ul]:ms-4 [&_*]:!max-w-full [&_*]:!h-auto [&_*]:!break-words"
+          dangerouslySetInnerHTML={{ __html: text }}
+        />
       </div>
     </div>
   )
